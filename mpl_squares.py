@@ -1,4 +1,3 @@
-import temporary
 import matplotlib.pyplot as plt
 
 
@@ -6,6 +5,7 @@ input_values = [1, 2, 3, 4, 5]
 squares = [1, 4, 9, 16, 25]
 plt.style.use("seaborn")
 fig, ax = plt.subplots()
+ax.scatter(input_values, squares)
 ax.plot(input_values, squares, linewidth=3)
 
 # Set chart title and label axes.
