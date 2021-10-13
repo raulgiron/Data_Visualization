@@ -130,3 +130,6 @@ dmypy.json
 
 # A called temporary file just for testing purposes.
 temporary.py
+
+# All .png files as they are only educational.
+*.png
