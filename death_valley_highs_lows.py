@@ -9,16 +9,21 @@ with open(filename) as f:
     reader = csv.reader(f)
     header_row = next(reader)
 
-# for index, column_header in enumerate(header_row, 1):
-#     print(f"{index}-) {column_header} ", end=' \t')
+    # for index, column_header in enumerate(header_row, 1):
+    #     print(f"{index}-) {column_header} ", end=' \t')
+
+    # Automatic indexes.
+    date_index = header_row.index('DATE')
+    high_index = header_row.index('TMAX')
+    low_index = header_row.index('TMIN')
 
     # Get dates and high and low temperatures from this file.
     dates, highs, lows = [], [], []
     for row in reader:
-        current_date = datetime.strptime(row[2], '%Y-%m-%d')
+        current_date = datetime.strptime(row[date_index], '%Y-%m-%d')
         try:
-            high = (int(row[4]) - 32) * 5 / 9
-            low = (int(row[5]) - 32) * 5 / 9
+            high = (int(row[high_index]) - 32) * 5 / 9
+            low = (int(row[low_index]) - 32) * 5 / 9
         except ValueError:
             print(f"missing data for {current_date}")
         else:
