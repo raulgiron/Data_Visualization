@@ -8,6 +8,7 @@ from plotly import offline
 filename = '/Users/raulgiron/Desktop/Data_Visualization/data/eq_data_1_day_m1.json'
 with open(filename) as f:
     all_eq_data = json.load(f)
+
     all_eq_dicts = all_eq_data['features']
 
     mags, lons, lats = [], [], []
@@ -18,12 +19,19 @@ with open(filename) as f:
         mags.append(mag)
         lons.append(lon)
         lats.append(lat)
-    print(mags[:10])
-    print(lons[:5])
-    print(lats[:5])
+    # print(mags[:10])
+    # print(lons[:5])
+    # print(lats[:5])
 
     # Map the earthquakes.
-    data = [Scattergeo(lon=lons, lat=lats)]
+    data = [{
+        'type': 'scattergeo',
+        'lon': lons,
+        'lat': lats,
+        'marker': {
+            'size': [5*mag for mag in mags],
+        },
+    }]
     my_layout = Layout(title='Global Earthquakes')
 
     fig = {'data': data, 'layout': my_layout}
