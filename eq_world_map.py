@@ -1,6 +1,5 @@
 import json
-from plotly.graph_objs import Scattergeo
-from plotly.graph_objs import Layout
+from plotly.graph_objs import Scattergeo, Layout
 from plotly import offline
 
 
@@ -30,7 +29,7 @@ with open(filename) as f:
         'lat': lats,
         'text': hover_texts,
         'marker': {
-            'size': [5*mag for mag in mags],
+            'size': [5 * mag for mag in mags],
             'color': mags,
             'colorscale': 'Viridis',
             'reversescale': True,
