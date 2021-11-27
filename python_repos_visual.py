@@ -14,7 +14,10 @@ response_dict = r.json()
 repo_dicts = response_dict['items']
 repo_links, stars, labels = [], [], []
 for repo_dict in repo_dicts:
-    repo_names = repo_dict['name']
+    repo_name = repo_dict['name']
+    repo_url = repo_dict['html_url']
+    repo_link = f"<a href='{repo_dict}'>{repo_name}</a>"
+    repo_links.append(repo_link)
     stars = repo_dict['stargazers_count']
 
     owner = repo_dict['owner']['login']
@@ -25,7 +28,7 @@ for repo_dict in repo_dicts:
 # Make visualization.
 data = [{
     'type': 'bar',
-    'x': 'repo_names',
+    'x': 'repo_links',
     'y': 'stars',
     'hovertext': labels,
     'marker': {
